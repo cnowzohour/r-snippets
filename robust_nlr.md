@@ -1,10 +1,9 @@
----
-title: "Robust non-linear regression example"
-output: github_document
----
+Robust non-linear regression example
+================
 
 Generate Data
-```{r}
+
+``` r
 set.seed(2)
 n <- 100
 a1 <- 1
@@ -20,13 +19,15 @@ dat <- data.frame(x=x, y=y)
 ```
 
 Fit model
-```{r}
+
+``` r
 library(robustbase)
 res <- nlrob(y ~ f(x, a1, a2, b1, b2), data = dat, start = c(a1 = 1, a2 = 1, b1 = -1, b2 = 1))
 ```
 
 Plot
-```{r}
+
+``` r
 xlim <- c(-2, 2)
 grid <- seq(xlim[1], xlim[2], len = 1000)
 y0 <- f(grid, a1, a2, b1, b2)
@@ -37,3 +38,4 @@ lines(grid, yhat, col = "red", lty = 2)
 legend("bottomright", legend = c("Ground Truth", "Robust Estimate"), col = c("blue", "red"), lty = c(1, 2), lwd = c(2, 1))
 ```
 
+![](robust_nlr_files/figure-markdown_github/unnamed-chunk-6-1.png)
